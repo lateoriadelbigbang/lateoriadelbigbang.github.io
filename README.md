@@ -1,1 +1,0 @@
-# lateoriadelbigbang.github.io
