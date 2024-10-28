@@ -11,33 +11,36 @@
             background-color: #000;
             color: #fff;
             font-family: Arial, sans-serif;
-            line-height: 1; /* Ajuste del espaciado entre líneas */
+            line-height: 1;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            line-height: 1;
         }
 
         h1 {
-            font-size: 48px; /* Tamaño más grande */
-            margin-bottom: 5px;
-            margin-top: -10px; /* Ajuste para acercar al subtítulo */
+            font-size: 3rem;
+            margin-top: -8px;
         }
 
         h2 {
-            font-size: 52px; /* Tamaño más grande */
-            font-weight: bold; /* Negrita */
-            margin-top: -16px; /* Ajuste para acercar al título */
-            margin-bottom: 5px;
-            letter-spacing: -2px; /* Reducción del espacio entre letras */
+            font-size: 4rem;
+            font-weight: bold;
+            margin-top: -12px;
+            letter-spacing: -0.5px;
         }
 
         h3 {
-            font-size: 32px; /* Tamaño más pequeño */
-            margin-bottom: 10px; /* Reducción del espacio inferior */
-            margin-top: -14px; /* Ajuste para acercar al subtítulo anterior */
-            text-transform: uppercase; /* Convertir texto a mayúsculas */
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-top: -8px;
+            margin-bottom: 10px;
         }
 
         button {
             padding: 10px;
-            font-size: 16px;
+            font-size: 1rem;
             cursor: pointer;
             background-color: #444;
             color: #fff;
@@ -45,10 +48,36 @@
             border-radius: 5px;
             margin: 20px auto;
             display: block;
+            max-width: 200px;
         }
-        #selectedLink {
+
+        #videoFrame {
             margin-top: 20px;
-            color: #fff;
+            width: 90%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            border: 2px solid #444;
+            border-radius: 10px;
+            background-color: #222;
+        }
+
+        /* Ajustes para pantallas pequeñas */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 8vw;
+            }
+
+            h2 {
+                font-size: 10vw;
+            }
+
+            h3 {
+                font-size: 6vw;
+            }
+
+            button {
+                font-size: 4vw;
+            }
         }
     </style>
 </head>
@@ -57,7 +86,7 @@
     <h2>BIG BANG</h2>
     <h3>THEORY</h3>
     <button onclick="seleccionarEpisodioAleatorio()">Episodio Random</button>
-    <div id="selectedLink"></div>
+    <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
 
     <script>
         // Array de enlaces
@@ -340,13 +369,16 @@
             "https://streamsito.com/video/tt0898266-12x22/",
             "https://streamsito.com/video/tt0898266-12x23/",
         ];
+
+        // Función para seleccionar un episodio aleatorio
         function seleccionarEpisodioAleatorio() {
             var indiceAleatorio = Math.floor(Math.random() * enlaces.length);
             var enlaceAleatorio = enlaces[indiceAleatorio];
-            
-            // Mostrar el enlace seleccionado
-            window.location.href = enlaceAleatorio;
+            document.getElementById('videoFrame').src = enlaceAleatorio;
         }
+
+        // Seleccionar un episodio aleatorio al cargar la página
+        window.onload = seleccionarEpisodioAleatorio;
     </script>
 </body>
 </html>
